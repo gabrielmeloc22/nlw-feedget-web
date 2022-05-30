@@ -1,4 +1,4 @@
-import html2canvas from "html2canvas"
+import * as htmlToImage from 'html-to-image';
 
 import { Camera, Trash } from "phosphor-react"
 
@@ -21,8 +21,8 @@ export function ScreenshotBtn({
   async function handleTakeScreenshot() {
     setIsTakingScreenshot(true);
 
-    const canvas = await html2canvas(document.querySelector('html')!);
-    const base64image = canvas.toDataURL('image/png');
+    const canvas = await htmlToImage.toCanvas(document.querySelector('html')!);
+    const base64image = canvas.toDataURL('image/jpeg');
 
     onScreenshotTaken(base64image);
     setIsTakingScreenshot(false);
